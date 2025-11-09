@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -35,14 +36,16 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute("registerForm") RegisterFormDTO registerFormDTO, BindingResult result, Model model){
+    public String registerUser(@Valid @ModelAttribute("registerForm") RegisterFormDTO registerForm, BindingResult result, RedirectAttributes redirectAttributes){
         
         if (result.hasErrors()){
             return "register";
         }
         
-        authService.registerUser(registerFormDTO);
-        return "redirect:/menu";
+        authService.registerUser(registerForm);
+
+        redirectAttributes.addFlashAttribute("success", "User " + registerForm.getUsername() + " created successfully");
+        return "redirect:/register";
 
         
 
