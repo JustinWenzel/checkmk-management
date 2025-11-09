@@ -12,7 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -36,18 +36,16 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("registerForm") RegisterFormDTO registerFormDTO, BindingResult result, Model model){
+        
         if (result.hasErrors()){
             return "register";
         }
         
-        boolean success = authService.registerUser(registerFormDTO);
-
-        if (!success) {
-            model.addAttribute("error", "User already exists");
-            return "register";
-        }
-
+        authService.registerUser(registerFormDTO);
         return "redirect:/menu";
+
+        
+
     }
     
     
