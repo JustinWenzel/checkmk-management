@@ -22,18 +22,16 @@ public class User {
     @Column(name = "email_address", nullable = false, unique = true, length = 50)
     private String emailAddress;
     
-    @Column(name = "password_hash", nullable = false, length = 255)
-    private String passwordHash;
+    @Column(name = "password", nullable = false, length = 255)
+    private String password;
     
 
     //Das in Service
-    public void setPassword(String plainTextPassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        this.passwordHash = encoder.encode(plainTextPassword);
+    public void setPassword(BCryptPasswordEncoder encoder,String plainTextPassword) {
+        this.password = encoder.encode(plainTextPassword);
     }
     
-    public boolean checkPassword(String plainTextPassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.matches(plainTextPassword, this.passwordHash);
+    public boolean checkPassword(BCryptPasswordEncoder encoder, String plainTextPassword) {
+        return encoder.matches(plainTextPassword, this.password);
     }
 }
