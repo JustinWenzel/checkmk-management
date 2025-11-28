@@ -8,6 +8,7 @@ import com.checkmk.checkmk_management.dto.RegisterFormDTO;
 import com.checkmk.checkmk_management.service.AuthService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,13 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
+@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
-
-    public AuthController(AuthService authService){
-        this.authService = authService;
-    }
 
     
     

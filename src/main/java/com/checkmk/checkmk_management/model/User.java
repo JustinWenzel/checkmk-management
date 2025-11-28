@@ -4,7 +4,9 @@ package com.checkmk.checkmk_management.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -24,14 +26,11 @@ public class User {
     
     @Column(name = "password", nullable = false, length = 255)
     private String password;
+
+    //Set allows no dupes
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
     
 
-    //Das in Service
-    public void setPassword(BCryptPasswordEncoder encoder,String plainTextPassword) {
-        this.password = encoder.encode(plainTextPassword);
-    }
-    
-    public boolean checkPassword(BCryptPasswordEncoder encoder, String plainTextPassword) {
-        return encoder.matches(plainTextPassword, this.password);
-    }
 }

@@ -22,4 +22,7 @@ public class RegisterFormDTO {
     
     @NotBlank(message = "Password confirmation is required")
     private String confirmPassword;
+
+    @NotBlank(message = "Role is required")
+    private String role;
 }

@@ -8,17 +8,15 @@ import com.checkmk.checkmk_management.exception.UserAlreadyExistsException;
 import com.checkmk.checkmk_management.mapper.UserMapper;
 import com.checkmk.checkmk_management.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
-    public AuthService(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
 
 
     public void registerUser(RegisterFormDTO registerForm){

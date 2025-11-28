@@ -5,14 +5,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration
-@EnableWebSecurity
-public class BasicSecurityConfiguration {
+@Configuration 
+//@EnableWebSecurity
+public class SecurityConfiguration {
 
     @Bean
     public BCryptPasswordEncoder createEncoder(){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
+
+
+
     
 }
