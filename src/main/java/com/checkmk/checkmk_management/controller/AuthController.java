@@ -44,9 +44,6 @@ public class AuthController {
 
         redirectAttributes.addFlashAttribute("success", "User " + registerForm.getUsername() + " created successfully");
         return "redirect:/register";
-
-        
-
     }
     
     

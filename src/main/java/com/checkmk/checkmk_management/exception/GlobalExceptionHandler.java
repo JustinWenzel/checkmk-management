@@ -21,4 +21,10 @@ public class GlobalExceptionHandler {
         redirectAttributes.addFlashAttribute("danger", exception.getMessage());
         return "redirect:/register";
     }
+
+    @ExceptionHandler(UserDoesNotExistException.class)
+    public String userDoesNotExistException(UserDoesNotExistException exception, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("danger", exception.getMessage());
+        return "redirect:/login";
+    }
 }
