@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -19,13 +20,36 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilters(HttpSecurity http) throws Exception{
-        String[] allowedPaths = {"/login", "/register", "/h2-console/**","/**"};
+        String[] allowedPaths = {"/login"};
         String[] allowedResources = {"/css/**", "/images/**", "/js/**"};
 
-        http.authorizeHttpRequests(authorize -> authorize.requestMatchers(allowedPaths).permitAll()
-            .requestMatchers(allowedResources).permitAll().anyRequest().authenticated()
+        //permitAll = everyione has permission
+        //authenticated = logged user
+        http.csrf()
+        .disable()
+        .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(allowedPaths)
+            .permitAll()
+            .requestMatchers(allowedResources)
+            .permitAll()
+            .anyRequest()
+            .authenticated()
         )
-        .formLogin(login -> login.loginPage("/login").loginProcessingUrl("/login").permitAll());
+        .formLogin(login -> login
+            .loginPage("/login")
+            .loginProcessingUrl("/login")
+            .defaultSuccessUrl("/menu")
+            .permitAll()
+        )
+        .logout(logout -> logout
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/login")
+            .permitAll()
+        )
+        .headers(headers -> headers
+            .frameOptions(HeadersConfigurer
+                .FrameOptionsConfig::disable)
+            ); //Deactivate this in prod
 
         return http.build();
     }
