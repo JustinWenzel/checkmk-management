@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="flash-messages" th:if="${success}">
+        <div class="alert alert-success" th:text="${success}"></div>
+    </div>
+    
+    <div class="flash-messages" th:if="${danger}">
+        <div class="alert alert-danger" th:text="${danger}"></div>
+    </div>
+
+    <div class="container">
+        <form th:action="@{/login}" th:object="${loginForm}" method="POST" class="form-addHost">
+            <h1 class="add-header">Login</h1>
+            
+            <label for="username">Username:*</label>
+            <input type="text" id="username" th:field="*{username}" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" 
+                 th:errors="*{username}" style="margin-top: -15px; margin-bottom: 10px; padding: 8px 12px; font-size: 13px;">
+            </div>
+
+            <label for="password">Password:*</label>
+            <input type="password" id="password" th:field="*{password}" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" 
+                 th:errors="*{password}" style="margin-top: -15px; margin-bottom: 10px; padding: 8px 12px; font-size: 13px;">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</body>
+</html>

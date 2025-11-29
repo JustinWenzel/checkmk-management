@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.checkmk.checkmk_management.dto.LoginFormDTO;
 import com.checkmk.checkmk_management.dto.RegisterFormDTO;
 import com.checkmk.checkmk_management.service.AuthService;
 
@@ -45,6 +46,15 @@ public class AuthController {
         redirectAttributes.addFlashAttribute("success", "User " + registerForm.getUsername() + " created successfully");
         return "redirect:/register";
     }
+
+
+    @GetMapping("/login")
+    public String loginForm(Model model){
+        model.addAttribute("loginForm", new LoginFormDTO());
+        return "/login";
+    }
+
+
     
     
 }

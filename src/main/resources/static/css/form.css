@@ -12,6 +12,10 @@
   --cmk-green-bg: rgba(19, 211, 137, 0.1);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
   background: var(--cmk-bg);
@@ -27,6 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Flash Messages */
 .flash-messages {
   max-width: 520px;
   margin: 24px auto 0;
@@ -74,10 +79,19 @@ body {
     inset 0 1px 0 rgba(255, 77, 77, 0.1);
 }
 
+/* Form Container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  padding: 20px;
+}
+
 .form-addHost {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  width: 100%;
   max-width: 520px;
   margin: 48px auto;
   padding: 40px 36px;
@@ -97,7 +111,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 8px;
+  margin: 0 0 32px 0;
   position: relative;
   padding-bottom: 20px;
   color: var(--cmk-ink);
@@ -117,6 +131,80 @@ body {
   box-shadow: 0 0 12px var(--cmk-green-glow);
 }
 
+/* Labels */
+label {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+  display: block;
+  color: var(--cmk-ink);
+  letter-spacing: 0.01em;
+}
+
+/* Input Fields */
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--cmk-border);
+  background: rgba(34, 38, 43, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--cmk-ink);
+  font-size: 15px;
+  font-family: inherit;
+  margin-bottom: 20px;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--cmk-muted);
+  opacity: 0.6;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(58, 64, 71, 0.6);
+  background: rgba(34, 38, 43, 0.7);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cmk-green);
+  background: rgba(34, 38, 43, 0.8);
+  box-shadow: 
+    0 0 0 3px rgba(19, 211, 137, 0.15),
+    inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Select Dropdown */
+select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239aa1a9' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+select option {
+  background: #1a1d21;
+  color: var(--cmk-ink);
+  padding: 12px;
+}
+
+/* Info Field (für readonly Anzeige) */
 .info-field label {
   font-weight: 600;
   font-size: 15px;
@@ -140,57 +228,11 @@ body {
   font-family: inherit;
   margin-bottom: 20px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
-label {
-  font-weight: 600;
-  font-size: 15px;
-  margin-bottom: 8px;
-  display: block;
-  color: var(--cmk-ink);
-  letter-spacing: 0.01em;
-}
-
-input {
-  display: block;
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid var(--cmk-border);
-  background: rgba(34, 38, 43, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--cmk-ink);
-  font-size: 15px;
-  font-family: inherit;
-  margin-bottom: 20px;
-  transition: all 0.25s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-input::placeholder {
-  color: var(--cmk-muted);
-  opacity: 0.6;
-}
-
-input:hover {
-  border-color: rgba(58, 64, 71, 0.6);
-  background: rgba(34, 38, 43, 0.7);
-}
-
-input:focus {
-  outline: none;
-  border-color: var(--cmk-green);
-  background: rgba(34, 38, 43, 0.8);
-  box-shadow: 
-    0 0 0 3px rgba(19, 211, 137, 0.15),
-    inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
-}
-
+/* Buttons */
 .btn {
   display: inline-block;
   padding: 14px 24px;
@@ -235,7 +277,7 @@ input:focus {
   box-shadow: 
     0 6px 24px rgba(19, 211, 137, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  position: relative;
+  margin-top: 8px;
 }
 
 .btn-primary:hover {
@@ -268,12 +310,38 @@ input:focus {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* Back to Menu / Links */
 .back-to-menu {
   text-align: center;
   margin-top: 12px;
   margin-bottom: 24px;
 }
 
+.back-to-menu h6 {
+  margin: 0 0 12px 0;
+  color: var(--cmk-muted);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.back-to-menu a {
+  color: var(--cmk-green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.back-to-menu a:hover {
+  color: var(--cmk-green-dark);
+}
+
+/* Button Group */
 .button-group {
   display: flex;
   gap: 24px;
@@ -300,33 +368,7 @@ input:focus {
   min-width: 140px;
 }
 
-.back-to-menu a {
-  color: var(--cmk-green);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.back-to-menu a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--cmk-green);
-  transition: width 0.3s ease;
-}
-
-.back-to-menu a:hover {
-  color: var(--cmk-green-dark);
-}
-
-.back-to-menu a:hover::after {
-  width: 100%;
-}
-
+/* Responsive */
 @media (max-width: 768px) {
   .form-addHost {
     margin: 24px 16px;
@@ -335,14 +377,17 @@ input:focus {
   }
   
   .add-header {
-    font-size: 20px;
+    font-size: 16px;
   }
   
-  .info-value {
+  input,
+  select,
+  textarea {
     padding: 12px 14px;
   }
-  
-  input {
-    padding: 12px 14px;
+
+  select {
+    background-position: right 14px center;
+    padding-right: 36px;
   }
 }
