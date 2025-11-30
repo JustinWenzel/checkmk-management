@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.exception;
+package com.checkmk.checkmk_management.user.exception;
 
 public class UserDoesNotExistException extends RuntimeException{
 

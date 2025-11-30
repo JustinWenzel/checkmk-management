@@ -1,16 +1,16 @@
-package com.checkmk.checkmk_management.service;
+package com.checkmk.checkmk_management.auth;
 
 
 import org.springframework.stereotype.Service;
 
-import com.checkmk.checkmk_management.dto.RegisterFormDTO;
-import com.checkmk.checkmk_management.exception.PasswordIsNotEqualException;
-import com.checkmk.checkmk_management.exception.RoleNotFoundException;
-import com.checkmk.checkmk_management.exception.UserAlreadyExistsException;
-import com.checkmk.checkmk_management.mapper.UserMapper;
-import com.checkmk.checkmk_management.model.Role;
-import com.checkmk.checkmk_management.repository.RoleRepository;
-import com.checkmk.checkmk_management.repository.UserRepository;
+import com.checkmk.checkmk_management.auth.dto.RegisterFormDTO;
+import com.checkmk.checkmk_management.auth.exception.PasswordIsNotEqualException;
+import com.checkmk.checkmk_management.role.Role;
+import com.checkmk.checkmk_management.role.RoleRepository;
+import com.checkmk.checkmk_management.role.exception.RoleNotFoundException;
+import com.checkmk.checkmk_management.user.UserMapper;
+import com.checkmk.checkmk_management.user.UserRepository;
+import com.checkmk.checkmk_management.user.exception.UserAlreadyExistsException;
 
 import lombok.RequiredArgsConstructor;
 

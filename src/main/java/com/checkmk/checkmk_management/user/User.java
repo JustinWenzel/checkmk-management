@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.model;
+package com.checkmk.checkmk_management.user;
 
 
 import jakarta.persistence.*;
@@ -9,6 +9,8 @@ import java.util.Set;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.checkmk.checkmk_management.role.Role;
 
 @Entity
 @Table(name = "users")

@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.model;
+package com.checkmk.checkmk_management.role;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "role")
 @Data
 public class Role {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

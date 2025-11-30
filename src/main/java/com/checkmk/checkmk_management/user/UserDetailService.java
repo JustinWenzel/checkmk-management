@@ -1,13 +1,10 @@
-package com.checkmk.checkmk_management.service;
+package com.checkmk.checkmk_management.user;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import com.checkmk.checkmk_management.exception.UserDoesNotExistException;
-import com.checkmk.checkmk_management.model.User;
-import com.checkmk.checkmk_management.repository.UserRepository;
-
+import com.checkmk.checkmk_management.user.exception.UserDoesNotExistException;
 
 import lombok.RequiredArgsConstructor;
 

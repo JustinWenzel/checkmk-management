@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.exception;
+package com.checkmk.checkmk_management.role.exception;
 
 public class RoleNotFoundException extends RuntimeException{
 

@@ -1,12 +1,11 @@
-package com.checkmk.checkmk_management.controller;
+package com.checkmk.checkmk_management.auth;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.checkmk.checkmk_management.dto.LoginFormDTO;
-import com.checkmk.checkmk_management.dto.RegisterFormDTO;
-import com.checkmk.checkmk_management.service.AuthService;
+import com.checkmk.checkmk_management.auth.dto.LoginFormDTO;
+import com.checkmk.checkmk_management.auth.dto.RegisterFormDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

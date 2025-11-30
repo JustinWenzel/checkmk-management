@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.repository;
+package com.checkmk.checkmk_management.role;
 
 
 import java.util.Optional;
@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.stereotype.Repository;
-
-import com.checkmk.checkmk_management.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long>{

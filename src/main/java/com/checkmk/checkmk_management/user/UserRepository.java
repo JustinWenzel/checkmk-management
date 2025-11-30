@@ -1,11 +1,9 @@
-package com.checkmk.checkmk_management.repository;
+package com.checkmk.checkmk_management.user;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
-
-import com.checkmk.checkmk_management.model.User;
 
 
 

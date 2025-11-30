@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.exception;
+package com.checkmk.checkmk_management.common.exception;
 
 
 import javax.management.relation.RoleNotFoundException;
@@ -6,6 +6,10 @@ import javax.management.relation.RoleNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.checkmk.checkmk_management.auth.exception.PasswordIsNotEqualException;
+import com.checkmk.checkmk_management.user.exception.UserAlreadyExistsException;
+import com.checkmk.checkmk_management.user.exception.UserDoesNotExistException;
 
 //Catches all errors
 @ControllerAdvice

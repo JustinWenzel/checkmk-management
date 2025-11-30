@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.controller;
+package com.checkmk.checkmk_management.menu;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

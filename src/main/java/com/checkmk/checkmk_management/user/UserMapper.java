@@ -1,15 +1,15 @@
-package com.checkmk.checkmk_management.mapper;
+package com.checkmk.checkmk_management.user;
 
 
 
 import java.util.HashSet;
 import java.util.Set;
-import com.checkmk.checkmk_management.model.Role; 
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.checkmk.checkmk_management.dto.RegisterFormDTO;
-import com.checkmk.checkmk_management.model.User;
+import com.checkmk.checkmk_management.auth.dto.RegisterFormDTO;
+import com.checkmk.checkmk_management.role.Role;
 
 import lombok.RequiredArgsConstructor;
 

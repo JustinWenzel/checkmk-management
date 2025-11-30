@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.config;
+package com.checkmk.checkmk_management.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
