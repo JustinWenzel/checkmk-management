@@ -37,6 +37,7 @@ public class AuthController {
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("registerForm") RegisterFormDTO registerForm, BindingResult result, RedirectAttributes redirectAttributes){
         
+        //Field errors
         if (result.hasErrors()){
             return "register";
         }

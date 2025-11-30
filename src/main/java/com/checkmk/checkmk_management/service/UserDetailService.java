@@ -19,17 +19,17 @@ public class UserDetailService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username){
-        User user = userRepository.findByUsername(username);
-        if (user == null){
-            throw new UserDoesNotExistException("User does not exist!");
-        }
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UserDoesNotExistException("User does not exist!"));
 
        String[] roles = user.getRoles()
         .stream()
-        .map(role -> role.name())           
-        .toArray(size -> new String[size]); 
+        .map(role -> role.getName())     
+        .toArray(size -> new String[size]); //{ADMIN, READER}
 
         //Compares passwords and creates a session with this user
-        return org.springframework.security.core.userdetails.User.withUsername(user.getUsername()).password(user.getPassword()).roles(roles).build();
+        return org.springframework.security.core.userdetails.User
+        .withUsername(user.getUsername())
+        .password(user.getPassword())
+        .roles(roles).build();
     }
 }

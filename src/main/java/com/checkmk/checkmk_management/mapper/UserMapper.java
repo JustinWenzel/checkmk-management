@@ -19,11 +19,10 @@ public class UserMapper {
 
     private final BCryptPasswordEncoder encoder;
     
-    public User toModel(RegisterFormDTO registerForm){
+    public User toModel(RegisterFormDTO registerForm, Role role){
 
         Set<Role> newRole = new HashSet<>();
-        //Convert String to enum
-        newRole.add(Role.valueOf(registerForm.getRole()));
+        newRole.add(role);
         
         User newUser = new User();
         newUser.setUsername(registerForm.getUsername());

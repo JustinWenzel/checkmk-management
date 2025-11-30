@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -27,8 +30,8 @@ public class User {
     private String password;
 
     //Set allows no dupes
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Role> roles;
     
 
