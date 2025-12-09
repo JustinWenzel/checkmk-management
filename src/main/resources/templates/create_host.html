@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+    <title>Create Host</title>
+</head>
+
+  <body>
+    <div class="container">
+
+      <form method="POST" class="form-addHost" th:object="${hostForm}">
+
+        <form th:action="@{/createHost}" method="POST">
+
+            <h1 class="add-header">Add a new host</h1>
+
+            <label for="hostname">Hostname:*</label>
+            <input type="text" th:field="*{name}" required>
+
+            <label for="ipAdress">IP-Adress:*</label>
+            <input type="text" th:field="*{ipAdress}" required>
+
+            <label for="folder">Folder:</label>
+            <input type="text" th:field="*{folderName}">
+
+        </form>
+    </div>
+    <div class="back-to-menu">
+        <h6>Back to menu?</h6>
+        <a class="btn btn-sm btn-secondary" th:href="@{/menu}">Menu</a>
+    </div>
+  </body>
+</html>
