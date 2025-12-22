@@ -23,7 +23,7 @@ public class SecurityConfiguration {
         String[] allowedPaths = {"/login", "/register", "/h2-console/**", "/**"};
         String[] allowedResources = {"/css/**", "/images/**", "/js/**"};
 
-        //permitAll = everyione has permission
+        //permitAll = everyone has permission
         //authenticated = logged user
         http.csrf(csrf -> csrf
                 .disable())

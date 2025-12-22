@@ -31,3 +31,30 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Application Properties (Sensitive Data) ###
+application.properties
+application-*.properties
+!application.properties.example
+
+### Environment Variables ###
+.env
+.env.*
+!.env.example
+
+### Docker ###
+docker-compose.override.yml
+.dockerignore
+**/docker-compose.override.yml
+
+### Logs ###
+*.log
+logs/
+*.log.*
+
+### Generated Files ###
+META-INF/additional-spring-configuration-metadata.json
+
+### OS ###
+.DS_Store
+Thumbs.db

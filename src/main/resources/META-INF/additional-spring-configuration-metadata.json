@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "checkmk-api.base-url",
+    "type": "java.lang.String",
+    "description": "Base URL of the Checkmk API endpoint "
+  },
+  {
+    "name": "checkmk-api.site-ID",
+    "type": "java.lang.String",
+    "description": "Checkmk site identifier used for API requests"
+  },
+  {
+    "name": "checkmk-api.user",
+    "type": "java.lang.String",
+    "description": "Username for Checkmk API authentication (automation user)"
+  },
+  {
+    "name": "checkmk-api.password",
+    "type": "java.lang.String",
+    "description": "Password or automation secret for Checkmk API authentication"
+  },
+  {
+    "name": "checkmk-api.SSL-enable",
+    "type": "java.lang.Boolean",
+    "description": "Enable or disable SSL certificate validation for HTTPS connections"
+  },
+  {
+    "name": "checkmk-api.timeout-seconds",
+    "type": "java.lang.Integer",
+    "description": "Connection and read timeout in seconds for API requests"
+  }
+]}
