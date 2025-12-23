@@ -1,12 +1,28 @@
 package com.checkmk.checkmk_management.host;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class HostService {
 
-    public void createhost(HostFormDTO hostFormDTO){
-        
+    private final RestClient restClient;
+
+    public void createHost(HostFormDTO hostFormDTO){
+        // String/Object for proper functionality with other APIs
+        Map<String,Object> payload = Map.of("folder", hostFormDTO.getFolderName(), "host_name",
+                                            hostFormDTO.getName(), "attributes", 
+                                            Map.of("ipaddress", hostFormDTO.getIpAdress()));
+
+
+        restClient.post().uri("/domain-types/host_config/collections/all").body(payload).retrieve();
+
+
     }
     
 }

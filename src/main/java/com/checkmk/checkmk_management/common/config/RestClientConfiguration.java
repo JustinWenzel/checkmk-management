@@ -35,6 +35,7 @@ public class RestClientConfiguration {
     @Value("${checkmk-api.timeout-seconds}")
     private int timeoutSeconds;
     
+    @Bean
     public RestClient restClient(){
     return RestClient.builder()
         .baseUrl(baseURL)
@@ -44,15 +45,13 @@ public class RestClientConfiguration {
         })
         // 4xx Client Errors
         .defaultStatusHandler(
-            HttpStatusCode::is4xxClientError,
-            (request, response) -> {
+            HttpStatusCode::is4xxClientError, (request, response) -> {
                 throw new CheckmkClientException(response.getStatusText());
             }
         )
         // 5xx Server Errors
         .defaultStatusHandler(
-            HttpStatusCode::is5xxServerError,
-            (request, response) -> {
+            HttpStatusCode::is5xxServerError, (request, response) -> {
                 throw new CheckmkServerException(response.getStatusText());
             }
         )
