@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class HostService {
 
-    private final RestClient restClient;
+    private final RestClient checkmkRestClient;
 
     public void createHost(HostFormDTO hostFormDTO){
         // String/Object for proper functionality with other APIs
@@ -20,7 +20,7 @@ public class HostService {
                                             Map.of("ipaddress", hostFormDTO.getIpAdress()));
 
 
-        restClient.post().uri("/domain-types/host_config/collections/all").body(payload).retrieve();
+        checkmkRestClient.post().uri("/domain-types/host_config/collections/all").body(payload).retrieve();
 
 
     }
