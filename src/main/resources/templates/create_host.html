@@ -8,11 +8,16 @@
 </head>
 
   <body>
-    <div class="container">
+      <div class="flash-messages" th:if="${success}">
+        <div class="alert alert-success" th:text="${success}"></div>
+      </div>
+      
+      <div class="flash-messages" th:if="${danger}">
+          <div class="alert alert-danger" th:text="${danger}"></div>
+      </div>
 
-      <form method="POST" class="form-addHost" th:object="${hostForm}">
-
-        <form th:action="@{/createHost}" method="POST">
+    <div class="container"></div>
+      <form method="POST" class="form-addHost" th:object="${hostForm}" th:action="@{/host/create_host}">
 
             <h1 class="add-header">Add a new host</h1>
 
@@ -25,8 +30,11 @@
             <label for="folder">Folder:</label>
             <input type="text" th:field="*{folderName}">
 
+            <button type="submit">Create Host</button>
+
         </form>
     </div>
+
     <div class="back-to-menu">
         <h6>Back to menu?</h6>
         <a class="btn btn-sm btn-secondary" th:href="@{/menu}">Menu</a>

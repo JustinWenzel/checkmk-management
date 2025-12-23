@@ -28,17 +28,22 @@ public class HostController {
     }
 
 
-    @PostMapping("path")
+    @PostMapping("/host/create_host")
     public String postMethodName(@Valid @ModelAttribute("hostForm") HostFormDTO hostFormDTO, BindingResult result, RedirectAttributes redirectAttributes) {
         
         if (result.hasErrors()) {
             return "/create_host";
         }
 
-        hostService.createHost(hostFormDTO);
+        try {
+            hostService.createHost(hostFormDTO);
+            redirectAttributes.addFlashAttribute("success", "Host " + hostFormDTO.getName() + " created successfully!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("danger", e.getMessage());
+        }
         
-        redirectAttributes.addFlashAttribute("success", "Host " + hostFormDTO.getName() + " created successfully!");
-        return "redirect:/create_host";
+        // Redirect needs the path
+        return "redirect:/host/create_host";
     }
     
     
