@@ -42,13 +42,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(CheckmkClientException.class)
     public String checkmkClientException(CheckmkClientException exception, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("danger", exception.getMessage());
+        redirectAttributes.addFlashAttribute("danger", exception.getMessage());
         return "redirect:/host/create_host";
     }
 
     @ExceptionHandler(CheckmkServerException.class)
     public String checkmkServerException(CheckmkServerException exception, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("danger", exception.getMessage());
+        redirectAttributes.addFlashAttribute("danger", exception.getMessage());
         return "redirect:/host/create_host";
     }
 }

@@ -20,7 +20,11 @@ public class HostService {
                                             Map.of("ipaddress", hostFormDTO.getIpAdress()));
 
 
-        checkmkRestClient.post().uri("/domain-types/host_config/collections/all").body(payload).retrieve();
+        checkmkRestClient.post()
+            .uri("/domain-types/host_config/collections/all")
+            .body(payload)
+            .retrieve() // Request
+            .toBodilessEntity(); // Only HTTP metadata no response entity
 
 
     }
