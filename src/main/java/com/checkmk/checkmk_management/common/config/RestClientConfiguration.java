@@ -1,6 +1,7 @@
 package com.checkmk.checkmk_management.common.config;
 
 import java.time.Duration;
+import java.util.Collections;
 
 import javax.net.ssl.SSLContext;
 
@@ -51,18 +52,20 @@ public class RestClientConfiguration {
             .baseUrl(baseURL)
             .defaultHeaders(header -> {
                 header.setBasicAuth(username, password);
+                // Send and accept JSON
                 header.setContentType(MediaType.APPLICATION_JSON);
+                header.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
             })
             // 4xx Client Errors
             .defaultStatusHandler(
                 HttpStatusCode::is4xxClientError, (request, response) -> {
-                    throw new CheckmkClientException(response.getStatusText());
+                    throw new CheckmkClientException(response.getRawStatusCode() + " " + response.getStatusText());
                 }
             )
             // 5xx Server Errors
             .defaultStatusHandler(
                 HttpStatusCode::is5xxServerError, (request, response) -> {
-                    throw new CheckmkServerException(response.getStatusText());
+                    throw new CheckmkServerException(response.getRawStatusCode() + " " + response.getStatusText());
                 }
             )
             .requestFactory(createRequestFactory(timeoutSeconds))

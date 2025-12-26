@@ -15,9 +15,9 @@ public class HostService {
 
     public void createHost(HostFormDTO hostFormDTO){
         // String/Object for proper functionality with other APIs
-        Map<String,Object> payload = Map.of("folder", hostFormDTO.getFolderName(), "host_name",
-                                            hostFormDTO.getName(), "attributes", 
-                                            Map.of("ipaddress", hostFormDTO.getIpAdress()));
+        Map<String,Object> payload = Map.of("folder", hostFormDTO.getFolderName().trim(), "host_name",
+                                            hostFormDTO.getName().trim(), "attributes", 
+                                            Map.of("ipaddress", hostFormDTO.getIpAdress().trim()));
 
 
         checkmkRestClient.post()
