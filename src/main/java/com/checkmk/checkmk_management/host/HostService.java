@@ -14,6 +14,14 @@ public class HostService {
     private final RestClient checkmkRestClient;
 
     public void createHost(HostFormDTO hostFormDTO){
+        String folderName = hostFormDTO.getFolderName();
+
+        // ~ for proper Checkmk API format
+        if (folderName.isEmpty()) {
+            hostFormDTO.setFolderName("~");
+        }
+        hostFormDTO.setFolderName("~" + folderName);
+
         // String/Object for proper functionality with other APIs
         Map<String,Object> payload = Map.of("folder", hostFormDTO.getFolderName().trim(), "host_name",
                                             hostFormDTO.getName().trim(), "attributes", 

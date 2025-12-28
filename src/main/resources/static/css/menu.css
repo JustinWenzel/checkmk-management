@@ -41,10 +41,30 @@ a:focus {
     border-right: 1px solid var(--cmk-border);
 }
 
+.components {
+    transition: opacity 0.3s ease; /* Closing animation */
+}
+
+.components.closed {
+    display: none;
+}
+
+#list-unstyled components.closed {
+   transform: translateX(-100%);
+}
+
 #sidebar .sidebar-header {
     padding: 20px;
     background: var(--cmk-card);
     border-bottom: 1px solid var(--cmk-border);
+    
+}
+
+/* x mark */
+#sidebar .sidebar-header i {
+    font-size: 24px;  
+    cursor: pointer;
+    margin-bottom: 15px;
     
 }
 

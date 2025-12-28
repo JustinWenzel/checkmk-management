@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 public class HostController {
     private final HostService hostService;
 
-    @GetMapping("/host/create_host")
+    @GetMapping("/monitoring/create_host")
     public String getMethodName(Model model) {
         model.addAttribute("hostForm", new HostFormDTO());
         return "/create_host";
@@ -28,7 +28,7 @@ public class HostController {
     }
 
 
-    @PostMapping("/host/create_host")
+    @PostMapping("/monitoring/create_host")
     public String postMethodName(@Valid @ModelAttribute("hostForm") HostFormDTO hostFormDTO, BindingResult result, RedirectAttributes redirectAttributes) {
         
         if (result.hasErrors()) {
@@ -43,7 +43,7 @@ public class HostController {
         }
         
         // Redirect needs the path
-        return "redirect:/host/create_host";
+        return "redirect:/monitoring/create_host";
     }
     
     

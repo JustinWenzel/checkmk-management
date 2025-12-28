@@ -10,7 +10,8 @@
 </head>
 <body>
     <nav id="sidebar">
-        <div class="sidebar-header">  
+        <div class="sidebar-header"> 
+            <i class="lni lni-layout-9" id="close-sidebar"></i>
             <a href="https://www.google.com/logos/2010/pacman10-i.html">
                 <img class="checkmk-logo" th:src="@{/images/checkmk-logo-white-on-green.png}" alt="Checkmk Logo">
             </a>
@@ -40,7 +41,7 @@
                 </a>
                 <ul class="collapse list-unstyled" id="hostSubmenu">
                     <li>
-                        <a th:href="@{/host/create_host}">Create Host</a>
+                        <a th:href="@{/monitoring/create_host}">Create Host</a>
                     </li>
                     <li>
                         <a href="#">Delete Host</a>
@@ -81,6 +82,6 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script th:src="@{/js/sidebar.js}"></script>
+    <script th:src="@{/js/menu.js}"></script>
 </body>
 </html>
