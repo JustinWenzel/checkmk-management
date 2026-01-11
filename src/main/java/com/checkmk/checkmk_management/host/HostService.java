@@ -17,10 +17,12 @@ public class HostService {
         String folderName = hostFormDTO.getFolderName();
 
         // ~ for proper Checkmk API format
-        if (folderName.isEmpty()) {
+       if (folderName != null && !folderName.isBlank()) {
+            hostFormDTO.setFolderName("~" + folderName.trim());
+        } else {
             hostFormDTO.setFolderName("~");
         }
-        hostFormDTO.setFolderName("~" + folderName);
+        
 
         // String/Object for proper functionality with other APIs
         Map<String,Object> payload = Map.of("folder", hostFormDTO.getFolderName().trim(), "host_name",
