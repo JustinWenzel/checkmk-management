@@ -23,7 +23,7 @@ public class UserDetailService implements UserDetailsService{
         .map(role -> role.getName())     
         .toArray(size -> new String[size]); //{ADMIN, READER}
 
-        //Compares passwords and creates a session with this user
+        //Compares password hashes and creates a session with this user
         return org.springframework.security.core.userdetails.User
         .withUsername(user.getUsername())
         .password(user.getPassword())

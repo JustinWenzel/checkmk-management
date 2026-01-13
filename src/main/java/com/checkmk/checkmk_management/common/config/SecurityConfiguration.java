@@ -14,7 +14,7 @@ public class SecurityConfiguration {
 
     @Bean
     public BCryptPasswordEncoder createEncoder(){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); //For password hashing
         return encoder;
     }
 

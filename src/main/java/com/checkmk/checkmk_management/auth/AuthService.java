@@ -1,6 +1,7 @@
 package com.checkmk.checkmk_management.auth;
 
 
+import org.hibernate.annotations.TimeZoneStorage;
 import org.springframework.stereotype.Service;
 
 import com.checkmk.checkmk_management.auth.dto.RegisterFormDTO;
@@ -39,5 +40,5 @@ public class AuthService {
         userRepository.save(userMapper.toModel(registerForm, role));
 
     }
-    
+
 }
