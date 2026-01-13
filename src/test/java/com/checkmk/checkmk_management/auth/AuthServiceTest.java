@@ -103,6 +103,8 @@ public class AuthServiceTest {
         when(userMapper.toModel(formDTO, role)).thenReturn(user);
 
         authService.registerUser(formDTO);
+
+        // Verify because registerUser() returns void
         verify(userRepository).save(user);
 
     }
