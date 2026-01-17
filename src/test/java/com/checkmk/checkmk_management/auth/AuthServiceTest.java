@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -39,25 +40,32 @@ public class AuthServiceTest {
     @InjectMocks
     private AuthService authService; //Create AuthService with injected Mock objects
 
+    private RegisterFormDTO formDTO;
+
+
+    @BeforeEach
+    void formSetup() {
+        formDTO = new RegisterFormDTO();
+        formDTO.setEmailAddress("admin@gmail.com");
+        formDTO.setPassword("password");
+        formDTO.setConfirmPassword("password");
+        formDTO.setRole("ADMIN");
+    }
+
     @Test
     void shouldThrowExceptionWhenEmailAlreadyExist() {
-        RegisterFormDTO registerFormDTO = new RegisterFormDTO();
-        registerFormDTO.setEmailAddress("admin@gmail.com");
-
+        
         // When someone asks if this email exists, say yes
         when(userRepository.existsByEmailAddress("admin@gmail.com")).thenReturn(true);
 
         // Run the method and verify it throws the expected exception
         assertThrows(UserAlreadyExistsException.class, () -> {
-            authService.registerUser(registerFormDTO);
+            authService.registerUser(formDTO);
         });
     }
 
     @Test
     void shouldThrowExceptionWhenPasswordDoNotMatch(){
-        RegisterFormDTO formDTO = new RegisterFormDTO();
-        formDTO.setEmailAddress("admin@gmail.com");
-        formDTO.setPassword("password");
         formDTO.setConfirmPassword("wrongPassword");
 
         when(userRepository.existsByEmailAddress("admin@gmail.com")).thenReturn(false);
@@ -69,14 +77,9 @@ public class AuthServiceTest {
 
     @Test
     void shouldThrowExceptionWhenRoleNotFound() {
-        RegisterFormDTO formDTO = new RegisterFormDTO();
-        formDTO.setEmailAddress("admin@gmail.com");
-        formDTO.setPassword("password");
-        formDTO.setConfirmPassword("password");
-        formDTO.setRole("TEST_ROLE");
 
         when(userRepository.existsByEmailAddress("admin@gmail.com")).thenReturn(false);
-        when(roleRepository.findRoleByName("TEST_ROLE")).thenReturn(Optional.empty());
+        when(roleRepository.findRoleByName("ADMIN")).thenReturn(Optional.empty());
 
         assertThrows(RoleNotFoundException.class, () -> {
             authService.registerUser(formDTO);
@@ -86,20 +89,15 @@ public class AuthServiceTest {
 
     @Test
     void shouldRegisterSuccessfully() {
-        RegisterFormDTO formDTO = new RegisterFormDTO();
-        formDTO.setEmailAddress("admin@gmail.com");
-        formDTO.setPassword("password");
-        formDTO.setConfirmPassword("password");
-        formDTO.setRole("TEST_ROLE");
 
         User user = new User();
 
         Role role = new Role();
-        role.setName("TEST_ROLE");
+        role.setName("ADMIN");
 
         // Set response of the methods
         when(userRepository.existsByEmailAddress("admin@gmail.com")).thenReturn(false);
-        when(roleRepository.findRoleByName("TEST_ROLE")).thenReturn(Optional.of(role));
+        when(roleRepository.findRoleByName("ADMIN")).thenReturn(Optional.of(role));
         when(userMapper.toModel(formDTO, role)).thenReturn(user);
 
         authService.registerUser(formDTO);

@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +29,16 @@ class UserDetailServiceTest {
 
     @InjectMocks
     private UserDetailService userDetailService;
+
+    private User user;
+
+    @BeforeEach
+    void userSetup() {
+        user = new User();
+        user.setUsername("testUser");
+        user.setPassword("password");
+
+    }
     
     @Test
     void shouldThrowUserDoesNotExistException() {
@@ -35,7 +46,7 @@ class UserDetailServiceTest {
         when(userRepository.findByUsername("testUser")).thenReturn(Optional.empty());
 
         assertThrows(UserDoesNotExistException.class, () -> {
-            userDetailService.loadUserByUsername("testUser");
+            userDetailService.loadUserByUsername(user.getUsername());
         });
     }
 
@@ -46,10 +57,6 @@ class UserDetailServiceTest {
 
         Set<Role> roles = new HashSet<>();
         roles.add(role);
-
-        User user = new User();
-        user.setUsername("testUser");
-        user.setPassword("password");
         user.setRoles(roles);
 
 
