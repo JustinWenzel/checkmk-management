@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.checkmk.checkmk_management.host.dto.HostFormDTO;
+
 import jakarta.validation.Valid;
 
 

@@ -1,4 +1,4 @@
-package com.checkmk.checkmk_management.host;
+package com.checkmk.checkmk_management.host.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
