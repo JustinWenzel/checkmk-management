@@ -37,13 +37,9 @@ public class HostController {
             return "/create_host";
         }
 
-        try {
             hostService.createHost(hostFormDTO);
             redirectAttributes.addFlashAttribute("success", "Host " + hostFormDTO.getName() + " created successfully!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("danger", e.getMessage());
-        }
-        
+            
         // Redirect needs the path
         return "redirect:/monitoring/create_host";
     }

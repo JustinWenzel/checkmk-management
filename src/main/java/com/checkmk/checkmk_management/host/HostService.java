@@ -7,8 +7,6 @@ import org.springframework.web.client.RestClient;
 
 import com.checkmk.checkmk_management.common.util.CheckmkFormatUtil;
 import com.checkmk.checkmk_management.host.dto.HostFormDTO;
-import com.checkmk.checkmk_management.host.exception.HostNameIsNotGivenException;
-import com.checkmk.checkmk_management.host.exception.IPAdressIsNotGivenException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,14 +18,6 @@ public class HostService {
     private final HostPayloadMapper mapper;
 
     public void createHost(HostFormDTO hostFormDTO){
-
-        if (hostFormDTO.getName().isEmpty() || hostFormDTO.getName().isBlank()) {
-            throw new HostNameIsNotGivenException("A hostname is required");
-        }
-
-        if (hostFormDTO.getIpAdress().isEmpty() || hostFormDTO.getIpAdress().isBlank()) {
-            throw new IPAdressIsNotGivenException("An IP adress is required");
-        }
 
         String properFolderName = CheckmkFormatUtil.formatFolder(hostFormDTO.getFolderName());
 

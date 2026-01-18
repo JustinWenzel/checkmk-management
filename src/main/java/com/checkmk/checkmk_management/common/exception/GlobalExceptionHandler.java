@@ -6,8 +6,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.checkmk.checkmk_management.auth.exception.PasswordIsNotEqualException;
 import com.checkmk.checkmk_management.common.config.CheckmkServerException;
-import com.checkmk.checkmk_management.host.exception.HostNameIsNotGivenException;
-import com.checkmk.checkmk_management.host.exception.IPAdressIsNotGivenException;
 import com.checkmk.checkmk_management.role.exception.RoleNotFoundException;
 import com.checkmk.checkmk_management.user.exception.UserAlreadyExistsException;
 import com.checkmk.checkmk_management.user.exception.UserDoesNotExistException;
@@ -54,15 +52,4 @@ public class GlobalExceptionHandler {
         return "redirect:/menu";
     }
 
-    @ExceptionHandler(HostNameIsNotGivenException.class)
-    public String hostNameIsNotGivenException(HostNameIsNotGivenException exception, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("danger", exception.getMessage());
-        return "redirect:/monitoring/create_host";
-    }
-
-    @ExceptionHandler(IPAdressIsNotGivenException.class)
-    public String ipAdressIsNotGivenException(IPAdressIsNotGivenException exception, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("danger", exception.getMessage());
-        return "redirect:/monitoring/create_host";
-    }
 }
