@@ -23,7 +23,7 @@ public class HostController {
     private final HostService hostService;
 
     @GetMapping("/monitoring/create_host")
-    public String getMethodName(Model model) {
+    public String createHostPage(Model model) {
         model.addAttribute("hostForm", new HostFormDTO());
         return "/create_host";
         
@@ -31,7 +31,7 @@ public class HostController {
 
 
     @PostMapping("/monitoring/create_host")
-    public String postMethodName(@Valid @ModelAttribute("hostForm") HostFormDTO hostFormDTO, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String postNewHost(@Valid @ModelAttribute("hostForm") HostFormDTO hostFormDTO, BindingResult result, RedirectAttributes redirectAttributes) {
         
         if (result.hasErrors()) {
             return "/create_host";

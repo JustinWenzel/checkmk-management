@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{menu}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/current_problems.css}">
+  <title>Current Problems</title>
+</head>
+
+<body>
+  <main layout:fragment="content">
+    <div class="container-fluid">
+      <div class="page-header">
+        <h1>All Current Service Problems</h1>
+      </div>
+
+      
+      <div class="stats-grid">
+        <div class="stats-card warning">
+          <div class="stats-value">12</div>
+          <div class="stats-label">Warnings</div>
+        </div>
+        <div class="stats-card danger">
+          <div class="stats-value">3</div>
+          <div class="stats-label">Critical</div>
+        </div>
+        <div class="stats-card info">
+          <div class="stats-value">5</div>
+          <div class="stats-label">Down</div>
+        </div>
+      </div>
+
+      <div class="controls-bar">
+        <div class="controls-right">
+          <select id="refreshSelect" class="refresh-select">
+            <option value="0">No auto refresh</option>
+            <option value="60">60s</option>
+            <option value="300">5 min</option>
+            <option value="600">10 min</option>
+            <option value="900">15 min</option>
+          </select>
+          <a href="#" class="btn btn-secondary">Refresh</a>
+        </div>
+      </div>
+
+      
+      <div class="card problems-card">
+        <div class="card-header">
+          <h5>Service Details</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="problems-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Host</th>
+                <th>Service</th>
+                <th>Output</th>
+                <th>Acknowledge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="status-warning">
+                <td><span class="badge warning">Warning</span></td>
+                <td><strong>web-server-01</strong></td>
+                <td>CPU Load</td>
+                <td>Load average: 8.5 (Critical threshold: 8)</td>
+                <td><span class="badge acknowledge">Acknowledge</span></td>
+              </tr>
+              <tr class="status-critical">
+                <td><span class="badge critical">Critical</span></td>
+                <td><strong>db-server-01</strong></td>
+                <td>Disk Space</td>
+                <td>Usage: 98% (Critical: 90%)</td>
+                <td><span class="badge acknowledge">Acknowledge</span></td>
+              </tr>
+              <tr class="status-down">
+                <td><span class="badge down">Down</span></td>
+                <td><strong>app-server-02</strong></td>
+                <td>Service Health</td>
+                <td>Connection timeout - No response from host</td>
+                <td><span class="badge acknowledge">Acknowledge</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+</body>
+</html>

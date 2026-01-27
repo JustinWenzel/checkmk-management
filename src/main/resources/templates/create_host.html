@@ -1,43 +1,85 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{menu}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/form.css}">
-    <title>Create Host</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/form.css}">
+  <title>Create Host</title>
 </head>
 
-  <body>
-      <div class="flash-messages" th:if="${success}">
-        <div class="alert alert-success" th:text="${success}"></div>
-      </div>
-      
-      <div class="flash-messages" th:if="${danger}">
-          <div class="alert alert-danger" th:text="${danger}"></div>
-      </div>
-
-    <div class="container"></div>
-      <form method="POST" class="form-addHost" th:object="${hostForm}" th:action="@{/host/create_host}">
-
-            <h1 class="add-header">Add a new host</h1>
-
-            <label for="hostname">Hostname:*</label>
-            <input type="text" th:field="*{name}" required>
-
-            <label for="ipAdress">IP-Adress:*</label>
-            <input type="text" th:field="*{ipAdress}" required>
-
-            <label for="folder">Folder:</label>
-            <input type="text" th:field="*{folderName}">
-
-            <button type="submit">Create Host</button>
-
-        </form>
+<body>
+  <main layout:fragment="content">
+    
+    <div class="flash-messages" th:if="${success}">
+      <div class="alert alert-success" th:text="${success}"></div>
     </div>
 
-    <div class="back-to-menu">
-        <h6>Back to menu?</h6>
-        <a class="btn btn-sm btn-secondary" th:href="@{/menu}">Menu</a>
+    
+    <div class="flash-messages" th:if="${danger}">
+      <div class="alert alert-danger" th:text="${danger}"></div>
     </div>
-  </body>
+
+   
+    <div class="container-fluid px-1 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+          <h3>Create Host</h3>
+          <p class="blue-text">Add a new host to Checkmk monitoring system</p>
+
+          <div class="card">
+            <h5 class="text-center mb-4">Host Configuration</h5>
+
+            <form th:action="@{/monitoring/create_host}" th:object="${hostForm}" method="POST" class="form-card">
+              
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-6 flex-column d-flex">
+                  <label class="form-control-label px-3">Hostname<span class="text-danger"> *</span></label>
+                  <input type="text" id="name" th:field="*{name}" placeholder="Enter hostname" required>
+                  <div class="alert alert-danger"
+                       th:if="${#fields.hasErrors('name')}"
+                       th:errors="*{name}"
+                       style="margin-top: 5px; margin-bottom: 0; padding: 8px 12px; font-size: 13px;">
+                  </div>
+                </div>
+
+                <div class="form-group col-sm-6 flex-column d-flex">
+                  <label class="form-control-label px-3">IP Address<span class="text-danger"> *</span></label>
+                  <input type="text" id="ipAdress" th:field="*{ipAdress}" placeholder="e.g., 192.168.1.1" required>
+                  <div class="alert alert-danger"
+                       th:if="${#fields.hasErrors('ipAdress')}"
+                       th:errors="*{ipAdress}"
+                       style="margin-top: 5px; margin-bottom: 0; padding: 8px 12px; font-size: 13px;">
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-12 flex-column d-flex">
+                  <label class="form-control-label px-3">Folder Name</label>
+                  <input type="text" id="folderName" th:field="*{folderName}" placeholder="(Optional) Enter folder name">
+                  <div class="alert alert-danger"
+                       th:if="${#fields.hasErrors('folderName')}"
+                       th:errors="*{folderName}"
+                       style="margin-top: 5px; margin-bottom: 0; padding: 8px 12px; font-size: 13px;">
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="row justify-content-end">
+                <div class="form-group col-sm-6">
+                  <button type="submit" class="btn-block btn-primary">Create Host</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
 </html>

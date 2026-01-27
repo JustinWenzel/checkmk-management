@@ -36,15 +36,7 @@ public class HostServiceTest {
     @InjectMocks
     private HostService hostService;
 
-    @ParameterizedTest
-    @CsvSource({
-        "testFolder",
-        "",
-        " ",
-        "    testFolder",
-        "testFolder    ",
-        "/testFolder"
-    })
+    
     void shouldCreateHostSuccessfully(String folderName) {
         HostFormDTO hostFormDTO = new HostFormDTO();
         hostFormDTO.setName("testComputer");

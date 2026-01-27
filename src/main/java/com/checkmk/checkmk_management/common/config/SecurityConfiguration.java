@@ -20,7 +20,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilters(HttpSecurity http) throws Exception{
-        String[] allowedPaths = {"/login", "/register", "/h2-console/**"};
+        String[] allowedPaths = {"/login", "/register", "/h2-console/**", "/**"};
         String[] allowedResources = {"/css/**", "/images/**", "/js/**"};
 
         //permitAll = everyone has permission
