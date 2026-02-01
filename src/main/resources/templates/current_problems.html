@@ -6,83 +6,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/css/current_problems.css}">
   <title>Current Problems</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/current_problems.css}">
 </head>
 
 <body>
   <main layout:fragment="content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
       <div class="page-header">
         <h1>All Current Service Problems</h1>
       </div>
 
-      
       <div class="stats-grid">
         <div class="stats-card warning">
           <div class="stats-value">12</div>
           <div class="stats-label">Warnings</div>
         </div>
-        <div class="stats-card danger">
+        <div class="stats-card critical">
           <div class="stats-value">3</div>
           <div class="stats-label">Critical</div>
         </div>
-        <div class="stats-card info">
+        <div class="stats-card down">
           <div class="stats-value">5</div>
           <div class="stats-label">Down</div>
         </div>
       </div>
 
       <div class="controls-bar">
-        <div class="controls-right">
-          <select id="refreshSelect" class="refresh-select">
-            <option value="0">No auto refresh</option>
-            <option value="60">60s</option>
-            <option value="300">5 min</option>
-            <option value="600">10 min</option>
-            <option value="900">15 min</option>
-          </select>
-          <a href="#" class="btn btn-secondary">Refresh</a>
-        </div>
+        <select id="refreshSelect" class="refresh-select">
+          <option value="0">No auto refresh</option>
+          <option value="60">60s</option>
+          <option value="300">5 min</option>
+          <option value="600">10 min</option>
+          <option value="900">15 min</option>
+        </select>
+        <a href="#" class="btn-refresh">Refresh</a>
       </div>
 
-      
-      <div class="card problems-card">
+      <div class="problems-card">
         <div class="card-header">
           <h5>Service Details</h5>
         </div>
+        
         <div class="table-responsive">
           <table class="problems-table">
             <thead>
               <tr>
-                <th>Status</th>
-                <th>Host</th>
-                <th>Service</th>
+                <th style="width: 100px;">Status</th>
+                <th style="width: 160px;">Host</th>
+                <th style="width: 140px;">Service</th>
                 <th>Output</th>
-                <th>Acknowledge</th>
+                <th style="width: 120px;">Acknowledge</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="status-warning">
-                <td><span class="badge warning">Warning</span></td>
-                <td><strong>web-server-01</strong></td>
-                <td>CPU Load</td>
-                <td>Load average: 8.5 (Critical threshold: 8)</td>
-                <td><span class="badge acknowledge">Acknowledge</span></td>
+              <tr>
+                <td><span class="badge-status badge-warn">Warning</span></td>
+                <td class="host-name">web-server-01</td>
+                <td class="service-name">CPU Load</td>
+                <td class="output">Load average: 8.5 (Critical threshold: 8)</td>
+                <td><button class="btn-ack">Acknowledge</button></td>
               </tr>
-              <tr class="status-critical">
-                <td><span class="badge critical">Critical</span></td>
-                <td><strong>db-server-01</strong></td>
-                <td>Disk Space</td>
-                <td>Usage: 98% (Critical: 90%)</td>
-                <td><span class="badge acknowledge">Acknowledge</span></td>
+              <tr>
+                <td><span class="badge-status badge-crit">Critical</span></td>
+                <td class="host-name">db-server-01</td>
+                <td class="service-name">Disk Space</td>
+                <td class="output">Usage: 98% (Critical: 90%)</td>
+                <td><button class="btn-ack">Acknowledge</button></td>
               </tr>
-              <tr class="status-down">
-                <td><span class="badge down">Down</span></td>
-                <td><strong>app-server-02</strong></td>
-                <td>Service Health</td>
-                <td>Connection timeout - No response from host</td>
-                <td><span class="badge acknowledge">Acknowledge</span></td>
+              <tr>
+                <td><span class="badge-status badge-down">Down</span></td>
+                <td class="host-name">app-server-02</td>
+                <td class="service-name">Service Health</td>
+                <td class="output">Connection timeout - No response from host</td>
+                <td><button class="btn-ack">Acknowledge</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge-status badge-warn">Warning</span></td>
+                <td class="host-name">cache-server-01</td>
+                <td class="service-name">Memory</td>
+                <td class="output">Memory usage: 82% (Warning: 80%)</td>
+                <td><button class="btn-ack">Acknowledge</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge-status badge-crit">Critical</span></td>
+                <td class="host-name">mail-server-01</td>
+                <td class="service-name">Queue Size</td>
+                <td class="output">Mail queue: 15420 messages (Critical: 10000)</td>
+                <td><button class="btn-ack">Acknowledge</button></td>
               </tr>
             </tbody>
           </table>
@@ -90,7 +102,5 @@
       </div>
     </div>
   </main>
-</body>
-</html>
 </body>
 </html>

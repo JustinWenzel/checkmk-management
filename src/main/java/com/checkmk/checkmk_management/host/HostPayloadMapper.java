@@ -9,9 +9,9 @@ import com.checkmk.checkmk_management.host.dto.HostFormDTO;
 @Component
 public class HostPayloadMapper {
     
-    public Map<String,Object> toCreatePayload(HostFormDTO hostFormDTO, String properFolderName) {
+    public Map<String, Object> toCreatePayload(HostFormDTO hostFormDTO, String properFolderName) {
         
-        Map<String,Object> payload = Map.of("folder", properFolderName.trim(),
+        Map<String, Object> payload = Map.of("folder", properFolderName.trim(),
                                             "host_name", hostFormDTO.getName().trim(),
                                             "attributes", Map.of("ipaddress", hostFormDTO.getIpAdress().trim()));
 
